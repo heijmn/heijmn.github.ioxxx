@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html class=" js ">
+<!--<![endif]-->
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Hornbach | Mieten</title>
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body style="background-color: blue;">
+	<div style="margin: 0 auto; padding: 10px; text-align: center; font-family: sans-serif;">This (blue) is the page which hosts the <span style="font-style: italic">iframe</span></div>
+    <style type="text/css">
+        #wrap iframe {
+            margin: 0;
+            padding: 0;
+            border: 0;
+        }
+    </style>
+    <div id="wrap">
+        <iframe id="embedded_site" src="https://hbtestiframe.azurewebsites.net/new_index.html"
+                style="background-color: white; width: 100%; height: 101%; display: block; vertical-align: bottom;"
+                seamless="seamless"
+                scrolling="no"
+                allow="geolocation">
+		</iframe>
+    </div>
+    <script type="text/javascript">
+      
+
+        window.addEventListener("message", function (e) {
+            var this_frame = document.getElementById("embedded_site");
+            if (this_frame.contentWindow === e.source) {
+                if(e.data.hasOwnProperty("windowLoaded") && (e.data.windowLoaded === true)) {
+                    setTimeout(function() {
+                    	this_frame.scrollIntoView({behavior: "smooth"})
+                    }, 1);
+                }
+                this_frame.height = e.data.height + "px";
+                this_frame.style.height = e.data.height + "px";
+            }
+        });
+    </script>
+
+<div style="text-align:right;position:fixed;bottom:3px;right:3px;width:100%;z-index:999999;cursor:pointer;line-height:0;display:block;"><a target="_blank" href="https://www.freewebhostingarea.com" title="Free Web Hosting with PHP5 or PHP7"><img alt="Free Web Hosting" src="https://www.freewebhostingarea.com/images/poweredby.png" style="border-width: 0px;width: 180px; height: 45px; float: right;"></a></div>
+</body>
+</html>
